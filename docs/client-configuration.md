@@ -25,7 +25,7 @@ Setup writes a table to `~/.codex/config.toml` (or `$CODEX_HOME/config.toml`):
 ```toml
 [mcp_servers.irp]
 command = "uvx"
-args = ["irp-agents@0.5.0", "mcp"]
+args = ["irp-agents@0.6.0", "mcp"]
 startup_timeout_sec = 30
 tool_timeout_sec = 1800
 ```

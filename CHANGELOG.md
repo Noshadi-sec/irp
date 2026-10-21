@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.0](https://github.com/Noshadi-sec/irp/compare/irp-agents-0.5.0...irp-agents-0.6.0) (2026-10-21)
+
+
+### IRP
+
+* build any paper, prove every claim ([0428743](https://github.com/Noshadi-sec/irp/commit/0428743f0d5de25281d9de330f725e2f9559d3ef))
+
 ## [0.5.0](https://github.com/Noshadi-sec/irp/compare/irp-agents-0.4.0...irp-agents-0.5.0) (2026-10-21)
 
 
