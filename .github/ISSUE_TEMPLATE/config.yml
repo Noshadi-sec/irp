@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Contribution scope and integration requirements
+    url: https://github.com/Noshadi-sec/irp/blob/main/CONTRIBUTING.md#contribution-scope
+    about: Check supported capabilities and the fail-closed integration rule before proposing a feature.
+  - name: IRP documentation
+    url: https://github.com/Noshadi-sec/irp#readme
+    about: Read the README and docs for setup, tools and the report format.
+  - name: Question or discussion
+    url: https://github.com/Noshadi-sec/irp/discussions
+    about: Ask questions and share ideas here.

@@ -1,0 +1,54 @@
+name: Reproduction report
+description: Share a IRP report for the gallery
+title: "[Report] "
+labels:
+  - reproduction-report
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Share a finished study. Attach the bundle from
+        `irp report --bundle DIR` (zip it), which contains the report, the
+        evidence log, code and run logs but never the paper. Reports marked
+        "not reproduced" are published only after the authors were contacted.
+
+  - type: input
+    id: paper
+    attributes:
+      label: Paper
+      description: arXiv ID with version, or a link to the paper.
+      placeholder: 2501.12345v2
+    validations:
+      required: true
+
+  - type: textarea
+    id: result
+    attributes:
+      label: Result line and claim table
+      description: Paste the top of report.md.
+    validations:
+      required: true
+
+  - type: input
+    id: head
+    attributes:
+      label: Evidence head hash
+      description: From report.json provenance.evidence.head; readers verify against it.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: authors
+    attributes:
+      label: Author contact
+      options:
+        - Every claim reproduced or close; no contact needed
+        - Authors contacted and recorded in the study (add_note author_contact)
+        - Not yet contacted
+    validations:
+      required: true
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Guesses, deviations and anything a reader should know

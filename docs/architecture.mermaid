@@ -1,0 +1,55 @@
+graph TD
+    subgraph "Entry Points"
+        DISPATCH["src/irp/__main__.py<br/>Executable dispatcher<br/>routes `mcp` before loading the CLI"]
+        CLI["src/irp/cli/<br/>Typer CLI adapter<br/>tools, setup, doctor, update, uninstall, budget"]
+        SERVER["src/irp/server/<br/>MCP adapter (official SDK)<br/>strict schemas, typed errors, prompts"]
+    end
+
+    subgraph "Shared Core"
+        OPS["application/operations.py<br/>one handler per named contract"]
+        WORKFLOWS["application/*_ops.py<br/>intake, claims, envs, runs, measure, report"]
+        RUNNER["application/runner.py<br/>executes run.started records<br/>foreground or detached, heartbeat"]
+        SETUP["application/setup, doctor, update, uninstall<br/>clients, client_config, skill_bundle"]
+        STUDY["application/study.py + evidence_log.py<br/>study layout, locked append-only log"]
+    end
+
+    subgraph "Contracts"
+        CONTRACTS["contracts/inputs.py + catalog.py<br/>input models and the tool catalog"]
+    end
+
+    subgraph "Providers (swappable)"
+        INTAKE["providers/intake/<br/>arXiv, safe archives, LaTeX, PDF (pypdf, Docling), page images"]
+        ENVS["providers/environments/<br/>uv, Docker"]
+        COMPUTE["providers/compute/<br/>local process groups, pricing, Modal (experimental)"]
+    end
+
+    subgraph "Domain (pure)"
+        DOMAIN["domain/<br/>evidence chain, state replay, numbers, claims,<br/>verdicts, metrics, gate, report, errors"]
+    end
+
+    FS["filesystem.py<br/>hashing, atomic writes, locks, containment"]
+
+    DISPATCH --> CLI
+    DISPATCH --> SERVER
+    CLI --> OPS
+    SERVER --> OPS
+    CLI --> SETUP
+    OPS --> CONTRACTS
+    OPS --> WORKFLOWS
+    WORKFLOWS --> RUNNER
+    WORKFLOWS --> STUDY
+    RUNNER --> STUDY
+    WORKFLOWS --> INTAKE
+    WORKFLOWS --> ENVS
+    RUNNER --> COMPUTE
+    WORKFLOWS --> COMPUTE
+    STUDY --> DOMAIN
+    WORKFLOWS --> DOMAIN
+    CONTRACTS --> DOMAIN
+    INTAKE --> DOMAIN
+    ENVS --> DOMAIN
+    COMPUTE --> DOMAIN
+    INTAKE --> FS
+    COMPUTE --> FS
+    STUDY --> FS
+    SETUP --> FS

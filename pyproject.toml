@@ -1,0 +1,151 @@
+[build-system]
+requires = ["hatchling==1.32.4"]
+build-backend = "hatchling.build"
+
+[project]
+name = "irp-agents"
+dynamic = ["version"]
+description = "Build any paper. Prove every claim. One CLI and MCP server that lets your coding agent turn a research paper into working code and prove, claim by claim, how close it gets."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE", "THIRD_PARTY_NOTICES.md"]
+requires-python = ">=3.11"
+authors = [{ name = "IRP contributors" }]
+keywords = [
+  "reproducibility",
+  "research-papers",
+  "paper-to-code",
+  "replication",
+  "agents",
+  "agent-skills",
+  "mcp",
+  "mcp-server",
+  "model-context-protocol",
+  "cli",
+  "arxiv",
+  "machine-learning",
+  "evidence",
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Environment :: Console",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Science/Research",
+  "Operating System :: MacOS",
+  "Operating System :: POSIX :: Linux",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Scientific/Engineering",
+  "Topic :: Software Development :: Testing",
+  "Typing :: Typed",
+]
+# Exact pins: uvx installs IRP into
+# its own environment, so exact versions cost nothing and keep every release
+# reproducible. Renovate-style bumps go through the normal PR checks.
+dependencies = [
+  "mcp==2.3.0",
+  "typer==0.26.8",
+  "pydantic==2.14.1",
+  "httpx==0.28.1",
+  "pypdf==6.21.1",
+  "pypdfium2==5.14.0",
+  "pillow==12.3.0",
+  "tomlkit==0.15.2",
+]
+
+[project.optional-dependencies]
+# Structured PDF text and tables for papers without LaTeX source.
+docling = ["docling==2.141.0"]
+# Experimental GPU sandboxes for run_remote (cost estimate and approval required).
+modal = ["modal==1.6.2"]
+
+[project.scripts]
+irp = "irp.__main__:main"
+irp-agents = "irp.__main__:main"
+
+[project.urls]
+Homepage = "https://github.com/Noshadi-sec/irp"
+Documentation = "https://github.com/Noshadi-sec/irp/tree/main/docs"
+Issues = "https://github.com/Noshadi-sec/irp/issues"
+Changelog = "https://github.com/Noshadi-sec/irp/blob/main/CHANGELOG.md"
+Security = "https://github.com/Noshadi-sec/irp/blob/main/SECURITY.md"
+
+[dependency-groups]
+dev = [
+  "pytest==9.1.1",
+  "ruff==0.17.1",
+  "mypy==2.4.0",
+  "pre-commit==4.7.0",
+]
+
+[tool.hatch.version]
+path = "src/irp/_version.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/irp"]
+
+# The authored skill lives where skills.sh discovers it from a clean checkout;
+# the wheel carries an exact copy so setup installs the matching instructions.
+[tool.hatch.build.targets.wheel.force-include]
+".agents/skills/reproduce-paper" = "irp/_bundled_skill/reproduce-paper"
+
+[tool.hatch.build.targets.sdist]
+include = [
+  "/src/irp",
+  "/.agents/skills/reproduce-paper",
+  "/tests",
+  "/README.md",
+  "/LICENSE",
+  "/THIRD_PARTY_NOTICES.md",
+  "/DISCLAIMER.md",
+  "/SECURITY.md",
+  "/CHANGELOG.md",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+src = ["src", "tests", "scripts"]
+# Example papers hold research-style code written as a paper's authors would.
+extend-exclude = ["examples"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "SIM", "RUF", "PTH", "S", "BLE", "C4", "PIE", "RET", "TID"]
+ignore = [
+  "E501",   # the formatter owns line length (ruff format)
+  "S101",   # assert is fine in tests and invariant checks
+  "S603",   # subprocess calls take argument lists, never shell strings
+  "S607",   # partial executable paths are resolved deliberately (uv, git, docker)
+  "RUF012", # pydantic and typer use class attributes by design
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S", "PTH", "BLE"]
+"scripts/**" = ["S", "T20"]
+
+[tool.ruff.lint.flake8-tidy-imports]
+ban-relative-imports = "all"
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+packages = ["irp"]
+mypy_path = "src"
+warn_unreachable = true
+
+[[tool.mypy.overrides]]
+module = ["pypdfium2.*", "docling.*", "modal.*"]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra --strict-markers"
+markers = [
+  "network: needs internet access (arXiv); skipped unless IRP_TEST_NETWORK=1",
+  "docker: needs a running Docker daemon; skipped unless IRP_TEST_DOCKER=1",
+  "uv: needs the uv executable on PATH",
+  "golden: end-to-end golden study replay",
+]

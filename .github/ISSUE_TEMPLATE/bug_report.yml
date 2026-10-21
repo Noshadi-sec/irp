@@ -1,0 +1,112 @@
+name: Bug report
+description: Report a problem in IRP with observations or source evidence
+title: "[Bug] "
+labels:
+  - bug
+  - triage
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Report one behavior per issue. Distinguish what you observed, what you
+        reasoned from the source, and what you suspect; do not claim a
+        reproduction you did not run. If an answer is unknown, write
+        `NOT_ENOUGH_INFO` and say what is missing. Never attach the paper itself,
+        credentials, or private data.
+
+  - type: checkboxes
+    id: before-submitting
+    attributes:
+      label: Before submitting
+      options:
+        - label: I searched open and closed issues for a related report.
+          required: true
+        - label: I updated to the latest release (`irp update` or `uvx irp-agents@latest`) and the problem persists.
+          required: true
+        - label: I removed credentials, tokens, private paths and private data.
+          required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Setup, doctor, update or uninstall
+        - Paper intake (arXiv, LaTeX, PDF, page images)
+        - Claims, guesses or method map
+        - Environments (uv, Docker)
+        - Runs (local, background, remote)
+        - Metrics or verdicts
+        - Report, evidence or verify
+        - CLI
+        - MCP or agent integration
+        - Documentation
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: observed-behavior
+    attributes:
+      label: Observed behavior
+      description: The actual result, with the exact command or MCP call and the tool's output or error JSON.
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction
+      description: The shortest steps you actually ran. Name the paper (arXiv ID) when it matters. Say how often it happens.
+      placeholder: |
+        1. irp fetch 2501.12345 --study ~/studies/x
+        2. ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected behavior
+      description: The expected result, citing documentation or source when you can.
+    validations:
+      required: true
+
+  - type: textarea
+    id: doctor
+    attributes:
+      label: Doctor output
+      description: Paste `irp doctor --json`. It is read-only.
+      render: json
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: IRP version
+      description: Output of `irp --version`, or the source commit.
+    validations:
+      required: true
+
+  - type: input
+    id: environment
+    attributes:
+      label: Platform
+      placeholder: macOS 15 arm64, Python 3.12, uv 0.13, Docker 29 (Colima); Claude Code
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Relevant evidence
+      description: The smallest useful part of evidence.jsonl, report.json, run output, or a source reference. Say how you obtained it. If unavailable, write NOT_ENOUGH_INFO.
+    validations:
+      required: true
+
+  - type: textarea
+    id: analysis
+    attributes:
+      label: Analysis or suspected cause
+      description: Optional. Label source-derived reasoning and hypotheses as such.

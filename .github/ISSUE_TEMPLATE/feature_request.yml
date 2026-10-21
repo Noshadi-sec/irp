@@ -1,0 +1,80 @@
+name: Feature request
+description: Propose a focused improvement to IRP
+title: "[Feature] "
+labels:
+  - enhancement
+  - triage
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Describe one problem and the outcome you want. Short answers are welcome;
+        choose "Not sure yet" where needed. Read the
+        [contribution scope](https://github.com/Noshadi-sec/irp/blob/main/CONTRIBUTING.md#contribution-scope).
+        Unresolved boundaries block integration, not discussion.
+
+  - type: checkboxes
+    id: before-submitting
+    attributes:
+      label: Before submitting
+      options:
+        - label: I searched open and closed issues and pull requests for a related proposal.
+          required: true
+        - label: This request contains no credentials, private data or copyrighted papers.
+          required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Paper intake
+        - Claims and verdicts
+        - Environments
+        - Runs and compute providers
+        - Report and evidence
+        - Agent integration and setup
+        - Benchmarks and showcases
+        - Documentation
+        - Not sure yet
+    validations:
+      required: true
+
+  - type: textarea
+    id: limitation
+    attributes:
+      label: Current limitation
+      description: What are you trying to do, and what is hard today? A paper where it happened helps.
+    validations:
+      required: true
+
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Desired outcome
+      description: What would a useful result look like?
+    validations:
+      required: true
+
+  - type: dropdown
+    id: effects
+    attributes:
+      label: Effects of the proposed capability
+      description: Select all that apply. These guide review; they do not approve scope.
+      multiple: true
+      options:
+        - Reads the paper or study only
+        - Runs code
+        - Contacts network services
+        - Spends money (paid compute)
+        - Changes agent configuration
+        - Documentation only
+        - Not sure yet
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Existing tools or workarounds, and why they fall short.

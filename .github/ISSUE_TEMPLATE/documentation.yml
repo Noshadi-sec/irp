@@ -1,0 +1,30 @@
+name: Documentation
+description: Report unclear, missing or incorrect documentation
+title: "[Docs] "
+labels:
+  - documentation
+  - triage
+body:
+  - type: input
+    id: location
+    attributes:
+      label: Documentation location
+      placeholder: README.md#quick-start or docs/evidence-and-report.md
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: Quote or describe the current content and what is unclear, missing or wrong.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected content
+      description: The accurate behavior or example, with a reference when available.
+    validations:
+      required: true

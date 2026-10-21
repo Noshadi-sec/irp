@@ -1,0 +1,7 @@
+# Keep text checkouts consistent with the formatter on every platform.
+* text=auto eol=lf
+
+# Binary fixtures and images keep their bytes.
+*.png binary
+*.pdf binary
+*.gz binary

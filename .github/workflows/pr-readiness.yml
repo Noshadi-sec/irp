@@ -1,0 +1,48 @@
+name: PR readiness
+
+on:
+  pull_request_target:
+    branches: [main]
+    types: [opened, edited, synchronize, reopened, ready_for_review, converted_to_draft]
+
+permissions: {}
+
+concurrency:
+  group: pr-readiness-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  readiness:
+    name: Validate author declaration
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    permissions:
+      pull-requests: read
+      statuses: write
+    steps:
+      # Reads only PR metadata; never checks out or runs code from the pull request.
+      - uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            const pr = context.payload.pull_request;
+            const body = pr.body || "";
+            const report = async (state, description) => github.rest.repos.createCommitStatus({
+              owner: context.repo.owner, repo: context.repo.repo, sha: pr.head.sha,
+              state, context: "PR readiness", description: description.slice(0, 140),
+            });
+            if (pr.draft) {
+              await report("pending", "Draft: the human owner declares readiness before review.");
+              return;
+            }
+            const owner = /^Human owner:\s*@[A-Za-z0-9-]+\s*$/m.test(body);
+            const declarations = [
+              /- \[[xX]\] I reviewed the final diff/,
+              /- \[[xX]\] I checked the evidence above/,
+              /- \[[xX]\] I declare this PR ready for initial maintainer review/,
+            ].every((pattern) => pattern.test(body));
+            if (owner && declarations) {
+              await report("success", "Human owner and readiness declarations are filled.");
+            } else {
+              await report("failure", "Fill 'Human owner: @handle' and all three Author readiness declarations.");
+              core.setFailed("Author readiness declaration incomplete.");
+            }

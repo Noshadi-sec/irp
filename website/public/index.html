@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>IRP: Build any paper. Prove every claim.</title>
+  <meta name="description" content="IRP lets your coding agent turn a research paper into working code, run it, and prove claim by claim how close it gets, with a report you can verify.">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header>
+    <a class="brand" href="./">IRP</a>
+    <nav>
+      <a href="gallery/">Gallery</a>
+      <a href="https://github.com/Noshadi-sec/irp/tree/main/docs">Docs</a>
+      <a href="https://github.com/Noshadi-sec/irp">GitHub</a>
+    </nav>
+  </header>
+  <main>
+    <h1>Build any paper.<br>Prove every claim.</h1>
+    <p class="lead">IRP lets your coding agent turn a research paper into working code, run it, and prove claim by claim how close it gets. You get the code and a report you can check without trusting the agent.</p>
+    <pre class="install"><code>uvx irp-agents setup</code></pre>
+    <p>Then ask your agent: <code>Build arXiv 2501.12345 and check Table 2.</code></p>
+
+    <h2>How it works</h2>
+    <img class="figure" src="assets/irp-flow.svg" alt="You ask your agent; the agent reads the paper, records claims, writes code and decides runs through IRP; IRP runs the code and logs every step in a hash-chained evidence log; the report is written from that log alone.">
+
+    <div class="grid">
+      <div class="card"><h3>Claims first</h3><p>Every number the paper claims is recorded, with where it appears and the bar for reproducing it, before any code is written.</p></div>
+      <div class="card"><h3>Numbers only from runs</h3><p>A result counts only if a full run printed it. Typed numbers and shortened runs never count.</p></div>
+      <div class="card"><h3>Every step on the record</h3><p>An append-only, hash-chained evidence log. Edit it and <code>irp verify</code> says where.</p></div>
+      <div class="card"><h3>Your agent, your machine</h3><p>Works with Claude Code, Codex and Cursor. IRP never calls a model; paid GPUs only after your approval.</p></div>
+    </div>
+
+    <h2>The report</h2>
+    <p>Example (made-up numbers):</p>
+    <table>
+      <thead><tr><th>Claim</th><th>Where</th><th>Paper</th><th>Ours</th><th>Verdict</th></tr></thead>
+      <tbody>
+        <tr><td>c1 Test accuracy</td><td>Table 2, row 3</td><td>94.1%</td><td>93.8% (3 seeds, std 0.2)</td><td class="verdict-close">close</td></tr>
+        <tr><td>c2 Training loss</td><td>Figure 4</td><td>0.31</td><td>0.31 (3 seeds)</td><td class="verdict-reproduced">reproduced</td></tr>
+        <tr><td>c3 Speed-up</td><td>Section 5.2</td><td>2.0x</td><td>2.1x</td><td class="verdict-reproduced">reproduced</td></tr>
+        <tr><td>c4 ImageNet top-1</td><td>Table 3</td><td>81.2%</td><td>not run: needs 8 GPUs for 2 days</td><td class="verdict-could_not_run">could not run</td></tr>
+      </tbody>
+    </table>
+    <p>Plus every guess the paper forced, a map from each equation to the code that implements it, and full provenance: arXiv version, hashes, commit, lock files, seeds and every command.</p>
+  </main>
+  <footer>
+    MIT licensed. Get IRP only from <a href="https://github.com/Noshadi-sec/irp">Noshadi-sec/irp</a> or <a href="https://pypi.org/project/irp-agents/">PyPI</a>.
+    A "not reproduced" verdict is evidence about one run, not a judgment of a paper.
+  </footer>
+</body>
+</html>

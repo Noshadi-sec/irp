@@ -1,0 +1,9 @@
+{
+  "selection_criteria": [
+    "Official code exists, so the hidden reference can be compared afterward",
+    "A CPU run finishes in under 30 minutes on a laptop",
+    "At least one numeric claim in a table",
+    "The code's license allows running it"
+  ],
+  "papers": []
+}

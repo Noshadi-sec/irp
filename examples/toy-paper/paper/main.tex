@@ -1,0 +1,53 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+% A small synthetic paper used as IRP's offline golden example.
+\newcommand{\R}{\mathbb{R}}
+
+\title{Least Squares Recovers a Linear Trend in Ten Thousand Samples}
+\author{IRP Examples}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We fit a line to noisy samples of $y = 2x + 1$ with ordinary least squares.
+With $n = 10{,}000$ training samples the estimated slope is $2.00$ and the
+test mean squared error is $0.0100$, matching the noise variance.
+\end{abstract}
+
+\section{Introduction}
+\label{sec:intro}
+Ordinary least squares (OLS) is the simplest estimator of a linear trend. We
+report how close it gets to the true slope on synthetic data.
+
+\input{sections/method}
+
+\section{Experiments}
+\label{sec:experiments}
+We draw $x \sim \mathcal{U}(0, 1)$ and $y = 2x + 1 + \varepsilon$ with
+$\varepsilon \sim \mathcal{N}(0, 0.1^2)$, using 10{,}000 training and 10{,}000
+test samples. Table~\ref{tab:main} reports the mean over three seeds.
+
+\begin{table}[t]
+\centering
+\caption{Least squares on synthetic data, mean over three seeds.}
+\label{tab:main}
+\begin{tabular}{lcc}
+\hline
+Method & Slope & Test MSE \\
+\hline
+OLS (ours) & 2.00 & 0.0100 \\
+\hline
+\end{tabular}
+\end{table}
+
+The fit takes well under one second on a laptop CPU.
+
+\appendix
+\section{Implementation details}
+\label{app:details}
+Samples are drawn with a seeded pseudo-random generator.
+
+\end{document}

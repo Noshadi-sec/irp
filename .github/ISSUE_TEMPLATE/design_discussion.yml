@@ -1,0 +1,40 @@
+name: Design discussion
+description: Discuss an architecture, provider, contract or scope decision
+title: "[Design] "
+labels:
+  - enhancement
+  - triage
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this for a new compute or environment provider, a change to the
+        evidence or report format, or anything that runs code, spends money or
+        edits agent configuration in a new way. One question is enough to start.
+
+  - type: textarea
+    id: decision
+    attributes:
+      label: Decision needed
+      placeholder: Should IRP ... or ...?
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Context and evidence
+      description: The problem, and evidence when available. Separate observed behavior from proposals.
+    validations:
+      required: true
+
+  - type: textarea
+    id: options
+    attributes:
+      label: Options and tradeoffs
+
+  - type: textarea
+    id: verification
+    attributes:
+      label: How it would be verified
+      description: Real-provider lanes, papers, or checks that would establish the behavior.

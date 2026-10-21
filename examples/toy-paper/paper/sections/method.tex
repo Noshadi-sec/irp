@@ -1,0 +1,29 @@
+\section{Method}
+\label{sec:method}
+We model the data as
+\begin{equation}
+  y = w x + b + \varepsilon,
+  \label{eq:model}
+\end{equation}
+and estimate $w$ and $b$ by minimizing the squared error
+\begin{equation}
+  \hat{w}, \hat{b} = \arg\min_{w, b} \sum_{i=1}^{n} (y_i - w x_i - b)^2,
+  \label{eq:ols}
+\end{equation}
+whose closed form is
+\begin{equation}
+  \hat{w} = \frac{\sum_i (x_i - \bar{x})(y_i - \bar{y})}{\sum_i (x_i - \bar{x})^2},
+  \qquad \hat{b} = \bar{y} - \hat{w}\bar{x}.
+  \label{eq:closed}
+\end{equation}
+
+\begin{algorithm}[t]
+\caption{Least squares fit}
+\label{alg:fit}
+\begin{algorithmic}
+\STATE Compute the means $\bar{x}$ and $\bar{y}$
+\STATE Compute $\hat{w}$ with Eq.~\ref{eq:closed}
+\STATE Compute $\hat{b} = \bar{y} - \hat{w}\bar{x}$
+\STATE Report the test mean squared error
+\end{algorithmic}
+\end{algorithm}
