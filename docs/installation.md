@@ -77,7 +77,7 @@ The registered command is pinned:
 
 <!-- x-release-please-start-version -->
 
-- from `uvx`: `uvx irp-agents@0.5.0 mcp`
+- from `uvx`: `uvx irp-agents@0.6.0 mcp`
 - from an installed IRP: the installation's own Python, `-m irp mcp`
 
 <!-- x-release-please-end -->
@@ -104,7 +104,7 @@ from the project directory:
 <!-- x-release-please-start-version -->
 
 ```bash
-claude mcp add --scope local irp -- uvx irp-agents@0.5.0 mcp
+claude mcp add --scope local irp -- uvx irp-agents@0.6.0 mcp
 ```
 
 <!-- x-release-please-end -->
@@ -177,7 +177,7 @@ For any other MCP client, register a stdio server:
   "mcpServers": {
     "irp": {
       "command": "uvx",
-      "args": ["irp-agents@0.5.0", "mcp"]
+      "args": ["irp-agents@0.6.0", "mcp"]
     }
   }
 }
