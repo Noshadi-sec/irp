@@ -1,0 +1,9 @@
+{
+  "created_at": "2026-10-23T11:18:49.873Z",
+  "created_by": "irp-agents 0.5.0",
+  "source_study": "/private/tmp/irpbench/fasttext",
+  "excluded": [
+    "paper/ (never redistributed; fetch it from the links in report.json)",
+    "envs/*/venv"
+  ]
+}

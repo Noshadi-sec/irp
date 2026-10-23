@@ -1,0 +1,2 @@
+/private/tmp/irpsc/mnist-1d/envs/main/venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(

@@ -1,0 +1,727 @@
+{
+  "schema": 1,
+  "title": "Fashion-MNIST: a Novel Image Dataset for Benchmarking Machine Learning Algorithms (arXiv 1708.07747v2)",
+  "final": true,
+  "generated_at": "2026-10-23T14:14:13.556Z",
+  "tool_version": "0.5.0",
+  "summary": {
+    "claims": 3,
+    "verdicts": {
+      "reproduced": 1,
+      "close": 1,
+      "not_reproduced": 1,
+      "could_not_run": 0
+    },
+    "without_verdict": []
+  },
+  "claims": [
+    {
+      "id": "c1",
+      "statement": "GaussianNB test accuracy (Fashion-MNIST)",
+      "metric": "gnb_acc",
+      "where": {
+        "kind": "table",
+        "label": "Benchmark table, GaussianNB row",
+        "source_file": "benchmark_table.tex",
+        "source_line": 56
+      },
+      "paper": {
+        "text": "0.511",
+        "value": 0.511,
+        "unit": null
+      },
+      "paper_check": {
+        "matches": [
+          {
+            "file": "benchmark_table.tex",
+            "line": 56,
+            "text": "GaussianNB & \\tiny{priors=\\texttt{[0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1]}} &$0.511$ & $0.524$\\\\"
+          }
+        ],
+        "status": "found"
+      },
+      "success_bar": {
+        "close": {
+          "abs": 0.03
+        },
+        "comparator": "approx",
+        "is_default": false,
+        "reproduced": {
+          "abs": 0.01
+        }
+      },
+      "recorded_before_code": true,
+      "verdict": "not_reproduced",
+      "verdict_label": "not reproduced by this run",
+      "ours": {
+        "count": 3,
+        "std": 0.0,
+        "value": 0.5856,
+        "values": [
+          0.5856,
+          0.5856,
+          0.5856
+        ]
+      },
+      "unit_scale": 1.0,
+      "judgement": {
+        "close_allowance": 0.03,
+        "difference": 0.0746,
+        "measured_value": 0.5856,
+        "paper_value": 0.511,
+        "relative_difference": 0.14598825831702544,
+        "reproduced_allowance": 0.01,
+        "verdict": "not_reproduced"
+      },
+      "could_not_run": null,
+      "note": null,
+      "evidence": [
+        {
+          "measurement_id": "m1",
+          "run_id": "r1",
+          "scope": "full",
+          "seed": 0,
+          "value": 0.5856,
+          "source": {
+            "path": "runs/r1/stdout.txt",
+            "sha256": "sha256:18a78316b3db202704edb7acccfe892d143279b0f6ef4ceda4278a429cb9ce77"
+          },
+          "occurrences": [
+            {
+              "line": 2,
+              "raw": "gnb_acc: 0.5856",
+              "value": 0.5856
+            }
+          ],
+          "counts": true
+        },
+        {
+          "measurement_id": "m2",
+          "run_id": "r2",
+          "scope": "full",
+          "seed": 1,
+          "value": 0.5856,
+          "source": {
+            "path": "runs/r2/stdout.txt",
+            "sha256": "sha256:86bbac7d15aa32f8b477371bb9767158b77848e459cefa65a14270808a542dd2"
+          },
+          "occurrences": [
+            {
+              "line": 2,
+              "raw": "gnb_acc: 0.5856",
+              "value": 0.5856
+            }
+          ],
+          "counts": true
+        },
+        {
+          "measurement_id": "m3",
+          "run_id": "r3",
+          "scope": "full",
+          "seed": 2,
+          "value": 0.5856,
+          "source": {
+            "path": "runs/r3/stdout.txt",
+            "sha256": "sha256:f22602dc8b5102e72127959f20f2b100b4fa0d7ebed1a72a5f3580ae0ac276c9"
+          },
+          "occurrences": [
+            {
+              "line": 2,
+              "raw": "gnb_acc: 0.5856",
+              "value": 0.5856
+            }
+          ],
+          "counts": true
+        }
+      ],
+      "verdict_history": [
+        {
+          "verdict": "not_reproduced",
+          "seq": 27,
+          "measurement_ids": [
+            "m1",
+            "m2",
+            "m3"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "statement": "DecisionTree (entropy, max_depth=10, best) accuracy (Fashion-MNIST)",
+      "metric": "dtree_acc",
+      "where": {
+        "kind": "table",
+        "label": "Benchmark table, DecisionTreeClassifier row",
+        "source_file": "benchmark_table.tex",
+        "source_line": 30
+      },
+      "paper": {
+        "text": "0.798",
+        "value": 0.798,
+        "unit": null
+      },
+      "paper_check": {
+        "matches": [
+          {
+            "file": "benchmark_table.tex",
+            "line": 30,
+            "text": "DecisionTreeClassifier & \\tiny{criterion=\\texttt{entropy} max\\_depth=$10$ splitter=\\texttt{best}} &$0.798$ & $0.873$\\\\"
+          }
+        ],
+        "status": "found"
+      },
+      "success_bar": {
+        "close": {
+          "abs": 0.02
+        },
+        "comparator": "approx",
+        "is_default": false,
+        "reproduced": {
+          "abs": 0.01
+        }
+      },
+      "recorded_before_code": true,
+      "verdict": "close",
+      "verdict_label": "close",
+      "ours": {
+        "count": 3,
+        "std": 0.00046188021535171385,
+        "value": 0.8112333333333334,
+        "values": [
+          0.8115,
+          0.8107,
+          0.8115
+        ]
+      },
+      "unit_scale": 1.0,
+      "judgement": {
+        "close_allowance": 0.02,
+        "difference": 0.01323333333333332,
+        "measured_value": 0.8112333333333334,
+        "paper_value": 0.798,
+        "relative_difference": 0.0165831244778613,
+        "reproduced_allowance": 0.01,
+        "verdict": "close"
+      },
+      "could_not_run": null,
+      "note": null,
+      "evidence": [
+        {
+          "measurement_id": "m4",
+          "run_id": "r1",
+          "scope": "full",
+          "seed": 0,
+          "value": 0.8115,
+          "source": {
+            "path": "runs/r1/stdout.txt",
+            "sha256": "sha256:18a78316b3db202704edb7acccfe892d143279b0f6ef4ceda4278a429cb9ce77"
+          },
+          "occurrences": [
+            {
+              "line": 3,
+              "raw": "dtree_acc: 0.8115",
+              "value": 0.8115
+            }
+          ],
+          "counts": true
+        },
+        {
+          "measurement_id": "m5",
+          "run_id": "r2",
+          "scope": "full",
+          "seed": 1,
+          "value": 0.8107,
+          "source": {
+            "path": "runs/r2/stdout.txt",
+            "sha256": "sha256:86bbac7d15aa32f8b477371bb9767158b77848e459cefa65a14270808a542dd2"
+          },
+          "occurrences": [
+            {
+              "line": 3,
+              "raw": "dtree_acc: 0.8107",
+              "value": 0.8107
+            }
+          ],
+          "counts": true
+        },
+        {
+          "measurement_id": "m6",
+          "run_id": "r3",
+          "scope": "full",
+          "seed": 2,
+          "value": 0.8115,
+          "source": {
+            "path": "runs/r3/stdout.txt",
+            "sha256": "sha256:f22602dc8b5102e72127959f20f2b100b4fa0d7ebed1a72a5f3580ae0ac276c9"
+          },
+          "occurrences": [
+            {
+              "line": 3,
+              "raw": "dtree_acc: 0.8115",
+              "value": 0.8115
+            }
+          ],
+          "counts": true
+        }
+      ],
+      "verdict_history": [
+        {
+          "verdict": "close",
+          "seq": 28,
+          "measurement_ids": [
+            "m4",
+            "m5",
+            "m6"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "statement": "RandomForest (100 trees, gini, max_depth=100) accuracy (Fashion-MNIST)",
+      "metric": "rf_acc",
+      "where": {
+        "kind": "table",
+        "label": "Benchmark table, RandomForestClassifier row",
+        "source_file": "benchmark_table.tex",
+        "source_line": 122
+      },
+      "paper": {
+        "text": "0.872",
+        "value": 0.872,
+        "unit": null
+      },
+      "paper_check": {
+        "matches": [
+          {
+            "file": "benchmark_table.tex",
+            "line": 122,
+            "text": "& \\tiny{n\\_estimators=$100$ criterion=\\texttt{gini} max\\_depth=$100$} &$0.872$ & $0.970$\\\\"
+          },
+          {
+            "file": "benchmark_table.tex",
+            "line": 123,
+            "text": "& \\tiny{n\\_estimators=$50$ criterion=\\texttt{entropy} max\\_depth=$100$} &$0.872$ & $0.968$\\\\"
+          },
+          {
+            "file": "benchmark_table.tex",
+            "line": 124,
+            "text": "& \\tiny{n\\_estimators=$100$ criterion=\\texttt{entropy} max\\_depth=$50$} &$0.872$ & $0.969$\\\\"
+          }
+        ],
+        "status": "found"
+      },
+      "success_bar": {
+        "close": {
+          "abs": 0.02
+        },
+        "comparator": "approx",
+        "is_default": false,
+        "reproduced": {
+          "abs": 0.01
+        }
+      },
+      "recorded_before_code": true,
+      "verdict": "reproduced",
+      "verdict_label": "reproduced",
+      "ours": {
+        "count": 3,
+        "std": 0.0019857828011474814,
+        "value": 0.8756666666666666,
+        "values": [
+          0.8774,
+          0.8761,
+          0.8735
+        ]
+      },
+      "unit_scale": 1.0,
+      "judgement": {
+        "close_allowance": 0.02,
+        "difference": 0.003666666666666596,
+        "measured_value": 0.8756666666666666,
+        "paper_value": 0.872,
+        "relative_difference": 0.004204892966360775,
+        "reproduced_allowance": 0.01,
+        "verdict": "reproduced"
+      },
+      "could_not_run": null,
+      "note": null,
+      "evidence": [
+        {
+          "measurement_id": "m7",
+          "run_id": "r1",
+          "scope": "full",
+          "seed": 0,
+          "value": 0.8774,
+          "source": {
+            "path": "runs/r1/stdout.txt",
+            "sha256": "sha256:18a78316b3db202704edb7acccfe892d143279b0f6ef4ceda4278a429cb9ce77"
+          },
+          "occurrences": [
+            {
+              "line": 4,
+              "raw": "rf_acc: 0.8774",
+              "value": 0.8774
+            }
+          ],
+          "counts": true
+        },
+        {
+          "measurement_id": "m8",
+          "run_id": "r2",
+          "scope": "full",
+          "seed": 1,
+          "value": 0.8761,
+          "source": {
+            "path": "runs/r2/stdout.txt",
+            "sha256": "sha256:86bbac7d15aa32f8b477371bb9767158b77848e459cefa65a14270808a542dd2"
+          },
+          "occurrences": [
+            {
+              "line": 4,
+              "raw": "rf_acc: 0.8761",
+              "value": 0.8761
+            }
+          ],
+          "counts": true
+        },
+        {
+          "measurement_id": "m9",
+          "run_id": "r3",
+          "scope": "full",
+          "seed": 2,
+          "value": 0.8735,
+          "source": {
+            "path": "runs/r3/stdout.txt",
+            "sha256": "sha256:f22602dc8b5102e72127959f20f2b100b4fa0d7ebed1a72a5f3580ae0ac276c9"
+          },
+          "occurrences": [
+            {
+              "line": 4,
+              "raw": "rf_acc: 0.8735",
+              "value": 0.8735
+            }
+          ],
+          "counts": true
+        }
+      ],
+      "verdict_history": [
+        {
+          "verdict": "reproduced",
+          "seq": 29,
+          "measurement_ids": [
+            "m7",
+            "m8",
+            "m9"
+          ]
+        }
+      ]
+    }
+  ],
+  "guesses": [
+    {
+      "choice": "scikit-learn 1.5.2",
+      "claims": [
+        "c1"
+      ],
+      "id": "g1",
+      "missing": "scikit-learn version used for the benchmark",
+      "source": null,
+      "why": "the paper does not state the version; GaussianNB's variance smoothing changed across sklearn versions, which shifts its accuracy"
+    },
+    {
+      "choice": "raw uint8 0-255",
+      "claims": [
+        "c1"
+      ],
+      "id": "g2",
+      "missing": "pixel preprocessing (raw 0-255 vs scaled 0-1)",
+      "source": null,
+      "why": "unstated; monotonic scaling does not change the tree models, but it shifts GaussianNB's variance floor and accuracy"
+    },
+    {
+      "choice": "3 seeds (0,1,2)",
+      "claims": [
+        "c1",
+        "c2",
+        "c3"
+      ],
+      "id": "g3",
+      "missing": "number of repeats",
+      "source": null,
+      "why": "paper averaged 5 shuffles; used 3 for time. GaussianNB is deterministic; tree-model variance across seeds is small"
+    }
+  ],
+  "method_map": [
+    {
+      "code_commit": "ec9c4b5e1cb7635baba84304827678012d7f2352",
+      "code_file": "code/fashion_bench.py",
+      "code_line": 74,
+      "code_sha256": "sha256:338807e8816b57b92950b4dc14c36c008ca128bb1d20e451eaa9472d3d92383a",
+      "end_line": null,
+      "id": "mm1",
+      "note": null,
+      "paper_element": "Benchmark table: GaussianNB row",
+      "paper_ref": null,
+      "snippet": "\"gnb_acc\": GaussianNB(priors=[0.1] * 10),",
+      "stale": false
+    },
+    {
+      "code_commit": "ec9c4b5e1cb7635baba84304827678012d7f2352",
+      "code_file": "code/fashion_bench.py",
+      "code_line": 75,
+      "code_sha256": "sha256:338807e8816b57b92950b4dc14c36c008ca128bb1d20e451eaa9472d3d92383a",
+      "end_line": 77,
+      "id": "mm2",
+      "note": null,
+      "paper_element": "Benchmark table: DecisionTreeClassifier row",
+      "paper_ref": null,
+      "snippet": "\"dtree_acc\": DecisionTreeClassifier(",
+      "stale": false
+    },
+    {
+      "code_commit": "ec9c4b5e1cb7635baba84304827678012d7f2352",
+      "code_file": "code/fashion_bench.py",
+      "code_line": 78,
+      "code_sha256": "sha256:338807e8816b57b92950b4dc14c36c008ca128bb1d20e451eaa9472d3d92383a",
+      "end_line": 80,
+      "id": "mm3",
+      "note": null,
+      "paper_element": "Benchmark table: RandomForestClassifier row",
+      "paper_ref": null,
+      "snippet": "\"rf_acc\": RandomForestClassifier(",
+      "stale": false
+    }
+  ],
+  "notes": [
+    {
+      "claims": [
+        "c1"
+      ],
+      "id": "n1",
+      "kind": "limitation",
+      "text": "GaussianNB came out higher than the paper (0.586 vs 0.511). On pixel data it is dominated by near-zero-variance background pixels, so it is very sensitive to scikit-learn's var_smoothing and to pixel scaling, neither pinned down by the paper. The tree models, insensitive to both, reproduce (RandomForest) or come close (DecisionTree)."
+    }
+  ],
+  "runs": [
+    {
+      "id": "r1",
+      "command": "python fashion_bench.py",
+      "env": "main",
+      "scope": "full",
+      "seed": 0,
+      "compute": "local",
+      "isolation": "none",
+      "code_state": {
+        "commit": "85255d22718e17f124783e8a190c27638cd3075d",
+        "dirty": false,
+        "vcs": "git"
+      },
+      "status": "succeeded",
+      "exit_code": 0,
+      "duration_s": 357.881,
+      "max_rss_bytes": 553598976,
+      "stdout": {
+        "bytes": 93,
+        "path": "runs/r1/stdout.txt",
+        "sha256": "sha256:18a78316b3db202704edb7acccfe892d143279b0f6ef4ceda4278a429cb9ce77"
+      },
+      "stderr": {
+        "bytes": 0,
+        "path": "runs/r1/stderr.txt",
+        "sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "hardware": {
+        "cpu_count": 4,
+        "gpus": [],
+        "machine": "x86_64",
+        "platform": "macOS-13.7.8-x86_64-i386-64bit"
+      },
+      "cost_usd": null
+    },
+    {
+      "id": "r2",
+      "command": "python fashion_bench.py",
+      "env": "main",
+      "scope": "full",
+      "seed": 1,
+      "compute": "local",
+      "isolation": "none",
+      "code_state": {
+        "commit": "85255d22718e17f124783e8a190c27638cd3075d",
+        "dirty": false,
+        "vcs": "git"
+      },
+      "status": "succeeded",
+      "exit_code": 0,
+      "duration_s": 106.162,
+      "max_rss_bytes": 596992000,
+      "stdout": {
+        "bytes": 93,
+        "path": "runs/r2/stdout.txt",
+        "sha256": "sha256:86bbac7d15aa32f8b477371bb9767158b77848e459cefa65a14270808a542dd2"
+      },
+      "stderr": {
+        "bytes": 0,
+        "path": "runs/r2/stderr.txt",
+        "sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "hardware": {
+        "cpu_count": 4,
+        "gpus": [],
+        "machine": "x86_64",
+        "platform": "macOS-13.7.8-x86_64-i386-64bit"
+      },
+      "cost_usd": null
+    },
+    {
+      "id": "r3",
+      "command": "python fashion_bench.py",
+      "env": "main",
+      "scope": "full",
+      "seed": 2,
+      "compute": "local",
+      "isolation": "none",
+      "code_state": {
+        "commit": "85255d22718e17f124783e8a190c27638cd3075d",
+        "dirty": false,
+        "vcs": "git"
+      },
+      "status": "succeeded",
+      "exit_code": 0,
+      "duration_s": 90.255,
+      "max_rss_bytes": 597540864,
+      "stdout": {
+        "bytes": 93,
+        "path": "runs/r3/stdout.txt",
+        "sha256": "sha256:f22602dc8b5102e72127959f20f2b100b4fa0d7ebed1a72a5f3580ae0ac276c9"
+      },
+      "stderr": {
+        "bytes": 0,
+        "path": "runs/r3/stderr.txt",
+        "sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "hardware": {
+        "cpu_count": 4,
+        "gpus": [],
+        "machine": "x86_64",
+        "platform": "macOS-13.7.8-x86_64-i386-64bit"
+      },
+      "cost_usd": null
+    }
+  ],
+  "provenance": {
+    "paper": {
+      "arxiv_id": "1708.07747",
+      "version": "v2",
+      "title": "Fashion-MNIST: a Novel Image Dataset for Benchmarking Machine Learning Algorithms",
+      "authors": [
+        "Han Xiao",
+        "Kashif Rasul",
+        "Roland Vollgraf"
+      ],
+      "links": {
+        "abs": "https://arxiv.org/abs/1708.07747v2",
+        "pdf": "https://arxiv.org/pdf/1708.07747v2",
+        "source": "https://arxiv.org/e-print/1708.07747v2"
+      },
+      "source_format": "latex",
+      "files": [
+        {
+          "bytes": 3009,
+          "path": "paper/index.json",
+          "sha256": "sha256:f47255018aefd0f5bf03b3faa75486002a3ab63114e554c7e0b239bd3f3f5492"
+        },
+        {
+          "bytes": 233983,
+          "path": "paper/paper.pdf",
+          "sha256": "sha256:253b6ef70144cb56d13b4e67d3f8cafad42df78d5984265e0a6e4812ad1715ae"
+        },
+        {
+          "bytes": 301717,
+          "path": "paper/source-download.tar.gz",
+          "sha256": "sha256:692c7457c7166882b9b063ec74562d1e758dfc65f38a21ad8c58a120dc0b29e0"
+        },
+        {
+          "bytes": 31102,
+          "path": "paper/text.json",
+          "sha256": "sha256:fde834f08611de44b26a3f1dcb724b14669c307d22ba5bb3f3752620f568387e"
+        },
+        {
+          "file_count": 15,
+          "path": "paper/source",
+          "sha256": "sha256:02c50c5589b7ead2d8f963e0c25998a3e3e64abb9aea5e71788caf3098b253f3",
+          "tree": true
+        }
+      ]
+    },
+    "code": {
+      "runs": [
+        {
+          "commit": "85255d22718e17f124783e8a190c27638cd3075d",
+          "tree_sha256": null,
+          "dirty": false,
+          "runs": [
+            "r1",
+            "r2",
+            "r3"
+          ],
+          "counting_runs": [
+            "r1",
+            "r2",
+            "r3"
+          ]
+        }
+      ],
+      "at_report": {
+        "vcs": "git",
+        "commit": "85255d22718e17f124783e8a190c27638cd3075d",
+        "dirty": false
+      }
+    },
+    "environments": [
+      {
+        "backend": "uv",
+        "gpu": false,
+        "isolation": "none",
+        "lock_file": "envs/main/lock.txt",
+        "lock_sha256": "sha256:8a96210d54d05d981dae164bf272d8d09033236b7ca861d60fc69152d2b959b7",
+        "locked_packages": 6,
+        "name": "main",
+        "packages": [],
+        "python": "3.12.12",
+        "requested_python": "3.12",
+        "requirements": "code/requirements.txt",
+        "requirements_sha256": "sha256:3b357251fd47d8428a758be0bf0bb40a11251a74c0c53cd0e95b3476884fead5",
+        "requirements_snapshot": "envs/main/requirements.txt",
+        "tool": {
+          "uv": "uv 0.13.4 (7456b60bc 2026-10-20 x86_64-apple-darwin)"
+        },
+        "venv": "envs/main/venv"
+      }
+    ],
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "commands_logged": 3,
+    "commands_with_exit_code": 3,
+    "budget_usd": 0.0,
+    "spent_usd": 0.0,
+    "budget_events": [],
+    "evidence": {
+      "records": 31,
+      "head": "sha256:cf8547aa4eca958e8e392d1a7876ef954eb85cd43133b6026e8d31dcd15a9a81",
+      "verified": true,
+      "problems": []
+    },
+    "verify_command": "irp verify --study /private/tmp/irpsc/fashion-mnist"
+  },
+  "gate": {
+    "complete": true,
+    "blocking": [],
+    "warnings": []
+  }
+}

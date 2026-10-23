@@ -1,0 +1,2 @@
+knn_mnist: 96.78
+knn_kmnist: 91.49

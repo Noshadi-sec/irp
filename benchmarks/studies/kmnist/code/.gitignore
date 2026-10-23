@@ -1,0 +1,7 @@
+# Written by IRP. Environments and large artifacts stay out of the code history.
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+.ipynb_checkpoints/

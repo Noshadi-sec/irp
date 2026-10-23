@@ -1,0 +1,295 @@
+{
+  "schema": 1,
+  "title": "Scaling Down Deep Learning with MNIST-1D (arXiv 2011.14439v5)",
+  "final": true,
+  "generated_at": "2026-10-21T20:32:09.318Z",
+  "tool_version": "0.5.0",
+  "summary": {
+    "claims": 1,
+    "verdicts": {
+      "reproduced": 1,
+      "close": 0,
+      "not_reproduced": 0,
+      "could_not_run": 0
+    },
+    "without_verdict": []
+  },
+  "claims": [
+    {
+      "id": "c1",
+      "statement": "Linear classifier (logistic regression) test accuracy on MNIST-1D (percent)",
+      "metric": "logreg_acc",
+      "where": {
+        "kind": "table",
+        "label": "Section 'Classification', Table 1 (tab:main-benchmark); logistic regression row",
+        "source_file": "content.tex",
+        "source_line": 120
+      },
+      "paper": {
+        "text": "32%",
+        "value": 32.0,
+        "unit": "%"
+      },
+      "paper_check": {
+        "matches": [
+          {
+            "file": "content.tex",
+            "line": 120,
+            "text": "We used PyTorch to implement and train simple logistic, MLP (fully-connected), CNN (with 1D convolutions), and GRU (gated recurrent unit) models. We used the Adam optimizer and early stopping for model selection and evaluation. We obtained "
+          }
+        ],
+        "status": "found"
+      },
+      "success_bar": {
+        "close": {
+          "abs": 4.0
+        },
+        "comparator": "approx",
+        "is_default": false,
+        "reproduced": {
+          "abs": 2.0
+        }
+      },
+      "recorded_before_code": true,
+      "verdict": "reproduced",
+      "verdict_label": "reproduced",
+      "ours": {
+        "count": 1,
+        "std": null,
+        "value": 32.9,
+        "values": [
+          32.9
+        ]
+      },
+      "unit_scale": 1.0,
+      "judgement": {
+        "close_allowance": 4.0,
+        "difference": 0.8999999999999986,
+        "measured_value": 32.9,
+        "paper_value": 32.0,
+        "relative_difference": 0.028124999999999956,
+        "reproduced_allowance": 2.0,
+        "verdict": "reproduced"
+      },
+      "could_not_run": null,
+      "note": null,
+      "evidence": [
+        {
+          "measurement_id": "m1",
+          "run_id": "r1",
+          "scope": "full",
+          "seed": 0,
+          "value": 32.9,
+          "source": {
+            "path": "runs/r1/stdout.txt",
+            "sha256": "sha256:503fdaabf6893581c976f13b653d0741b861aaad33a391cff927b435fea200d4"
+          },
+          "occurrences": [
+            {
+              "line": 3,
+              "raw": "logreg_acc: 32.90",
+              "value": 32.9
+            }
+          ],
+          "counts": true
+        }
+      ],
+      "verdict_history": [
+        {
+          "verdict": "reproduced",
+          "seq": 10,
+          "measurement_ids": [
+            "m1"
+          ]
+        }
+      ]
+    }
+  ],
+  "guesses": [
+    {
+      "choice": "converged scikit-learn multinomial logistic regression (lbfgs)",
+      "claims": [
+        "c1"
+      ],
+      "id": "g1",
+      "missing": "Training method for the linear model",
+      "source": null,
+      "why": "the paper trained a linear model in PyTorch with Adam + early stopping; a converged sklearn logistic regression is the library-independent stand-in for the same linear hypothesis class"
+    },
+    {
+      "choice": "StandardScaler fit on the training split",
+      "claims": [
+        "c1"
+      ],
+      "id": "g2",
+      "missing": "Feature preprocessing",
+      "source": null,
+      "why": "the paper does not state preprocessing; standardising aids solver convergence without changing the linear hypothesis class"
+    }
+  ],
+  "method_map": [
+    {
+      "code_commit": "42944de2901fd25d2ce212fac3b5a1a469f8a312",
+      "code_file": "code/logistic_mnist1d.py",
+      "code_line": 44,
+      "code_sha256": "sha256:6186b61bcf8f2b8d01c03f7904579ab7c0539d5e3ebc05579ecaa5c8d7179c83",
+      "end_line": 47,
+      "id": "mm1",
+      "note": "Converged multinomial logistic regression (linear model)",
+      "paper_element": "Table 1: logistic regression row",
+      "paper_ref": {
+        "id": "tab:1",
+        "start": {
+          "file": "content.tex",
+          "line": 13
+        }
+      },
+      "snippet": "model = LogisticRegression(max_iter=5000)",
+      "stale": false
+    }
+  ],
+  "notes": [],
+  "runs": [
+    {
+      "id": "r1",
+      "command": "python logistic_mnist1d.py",
+      "env": "main",
+      "scope": "full",
+      "seed": 0,
+      "compute": "local",
+      "isolation": "none",
+      "code_state": {
+        "commit": "f927db5364c160f313659d1670befa2bef805915",
+        "dirty": false,
+        "vcs": "git"
+      },
+      "status": "succeeded",
+      "exit_code": 0,
+      "duration_s": 77.435,
+      "max_rss_bytes": 126861312,
+      "stdout": {
+        "bytes": 83,
+        "path": "runs/r1/stdout.txt",
+        "sha256": "sha256:503fdaabf6893581c976f13b653d0741b861aaad33a391cff927b435fea200d4"
+      },
+      "stderr": {
+        "bytes": 190,
+        "path": "runs/r1/stderr.txt",
+        "sha256": "sha256:6c832551efefb9f6010d59bf9126262dc8cd44a0f477dfc89a4f43c68f6f1b0b"
+      },
+      "hardware": {
+        "cpu_count": 4,
+        "gpus": [],
+        "machine": "x86_64",
+        "platform": "macOS-13.7.8-x86_64-i386-64bit-Mach-O"
+      },
+      "cost_usd": null
+    }
+  ],
+  "provenance": {
+    "paper": {
+      "arxiv_id": "2011.14439",
+      "version": "v5",
+      "title": "Scaling Down Deep Learning with MNIST-1D",
+      "authors": [
+        "Sam Greydanus",
+        "Dmitry Kobak"
+      ],
+      "links": {
+        "abs": "https://arxiv.org/abs/2011.14439v5",
+        "pdf": "https://arxiv.org/pdf/2011.14439v5",
+        "source": "https://arxiv.org/e-print/2011.14439v5"
+      },
+      "source_format": "latex",
+      "files": [
+        {
+          "bytes": 14594,
+          "path": "paper/index.json",
+          "sha256": "sha256:3cff13201ef03dbc655d32a7d1068785dff44f05fdeb75b6dc89fd1f8f0500d5"
+        },
+        {
+          "bytes": 1684213,
+          "path": "paper/paper.pdf",
+          "sha256": "sha256:8e026b8b9e085df9b9095749415bf141fa9e7fac864fe796073e81e62e1925a9"
+        },
+        {
+          "bytes": 4899709,
+          "path": "paper/source-download.tar.gz",
+          "sha256": "sha256:c85db044e060678817ff2e6dca71fe9e95b06462dfa5a4db8b4f59081779891d"
+        },
+        {
+          "bytes": 64103,
+          "path": "paper/text.json",
+          "sha256": "sha256:57d4147b8cd954434a42b2f98b1c05ad4605db01071ad776f27b7107a6cc00de"
+        },
+        {
+          "file_count": 44,
+          "path": "paper/source",
+          "sha256": "sha256:7dd40ca14124935b2dfb96c2522fc734a8807ac6842537fc04efe0ae3fc1717f",
+          "tree": true
+        }
+      ]
+    },
+    "code": {
+      "runs": [
+        {
+          "commit": "f927db5364c160f313659d1670befa2bef805915",
+          "tree_sha256": null,
+          "dirty": false,
+          "runs": [
+            "r1"
+          ],
+          "counting_runs": [
+            "r1"
+          ]
+        }
+      ],
+      "at_report": {
+        "vcs": "git",
+        "commit": "f927db5364c160f313659d1670befa2bef805915",
+        "dirty": false
+      }
+    },
+    "environments": [
+      {
+        "backend": "uv",
+        "gpu": false,
+        "isolation": "none",
+        "lock_file": "envs/main/lock.txt",
+        "lock_sha256": "sha256:8a96210d54d05d981dae164bf272d8d09033236b7ca861d60fc69152d2b959b7",
+        "locked_packages": 6,
+        "name": "main",
+        "packages": [],
+        "python": "3.12.12",
+        "requested_python": "3.12",
+        "requirements": "code/requirements.txt",
+        "requirements_sha256": "sha256:3b357251fd47d8428a758be0bf0bb40a11251a74c0c53cd0e95b3476884fead5",
+        "requirements_snapshot": "envs/main/requirements.txt",
+        "tool": {
+          "uv": "uv 0.13.4 (7456b60bc 2026-10-20 x86_64-apple-darwin)"
+        },
+        "venv": "envs/main/venv"
+      }
+    ],
+    "seeds": [
+      0
+    ],
+    "commands_logged": 1,
+    "commands_with_exit_code": 1,
+    "budget_usd": 0.0,
+    "spent_usd": 0.0,
+    "budget_events": [],
+    "evidence": {
+      "records": 11,
+      "head": "sha256:a25d9981d9627af49e19072c7328daa4b3b3bba59dfacd6b5f5f051829e74ab2",
+      "verified": true,
+      "problems": []
+    },
+    "verify_command": "irp verify --study /private/tmp/irpsc/mnist-1d"
+  },
+  "gate": {
+    "complete": true,
+    "blocking": [],
+    "warnings": []
+  }
+}

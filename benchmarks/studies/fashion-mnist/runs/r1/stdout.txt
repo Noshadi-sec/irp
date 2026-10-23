@@ -1,0 +1,4 @@
+train=(60000, 784) test=(10000, 784) seed=0
+gnb_acc: 0.5856
+dtree_acc: 0.8115
+rf_acc: 0.8774

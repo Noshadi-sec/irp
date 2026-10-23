@@ -94,8 +94,8 @@ def main(argv: list[str]) -> int:
     if not argv:
         print(__doc__, file=sys.stderr)
         return 2
-    spot = Path(argv[argv.index("--spot-check") + 1]) if "--spot-check" in argv else None
-    summary = summarize(Path(argv[0]), spot)
+    spot = Path(argv[argv.index("--spot-check") + 1]).resolve() if "--spot-check" in argv else None
+    summary = summarize(Path(argv[0]).resolve(), spot)
     if "--json" in argv:
         print(json.dumps(summary, indent=2))
     else:

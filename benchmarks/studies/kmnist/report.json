@@ -1,0 +1,390 @@
+{
+  "schema": 1,
+  "title": "Deep Learning for Classical Japanese Literature (arXiv 1812.01718v1)",
+  "final": true,
+  "generated_at": "2026-10-23T14:09:54.220Z",
+  "tool_version": "0.5.0",
+  "summary": {
+    "claims": 2,
+    "verdicts": {
+      "reproduced": 2,
+      "close": 0,
+      "not_reproduced": 0,
+      "could_not_run": 0
+    },
+    "without_verdict": []
+  },
+  "claims": [
+    {
+      "id": "c1",
+      "statement": "4-NN baseline accuracy on MNIST (percent)",
+      "metric": "knn_mnist",
+      "where": {
+        "kind": "table",
+        "label": "Table 1, 4-Nearest Neighbour row, MNIST column",
+        "source_file": "main.tex",
+        "source_line": 198
+      },
+      "paper": {
+        "text": "97.14%",
+        "value": 97.14,
+        "unit": "%"
+      },
+      "paper_check": {
+        "matches": [
+          {
+            "file": "main.tex",
+            "line": 198,
+            "text": "4-Nearest Neighbour Baseline & 97.14\\% & 91.56\\% & 86.01\\% \\\\"
+          }
+        ],
+        "status": "found"
+      },
+      "success_bar": {
+        "close": {
+          "abs": 2.0
+        },
+        "comparator": "approx",
+        "is_default": false,
+        "reproduced": {
+          "abs": 1.0
+        }
+      },
+      "recorded_before_code": true,
+      "verdict": "reproduced",
+      "verdict_label": "reproduced",
+      "ours": {
+        "count": 1,
+        "std": null,
+        "value": 96.78,
+        "values": [
+          96.78
+        ]
+      },
+      "unit_scale": 1.0,
+      "judgement": {
+        "close_allowance": 2.0,
+        "difference": -0.35999999999999943,
+        "measured_value": 96.78,
+        "paper_value": 97.14,
+        "relative_difference": -0.0037059913526868377,
+        "reproduced_allowance": 1.0,
+        "verdict": "reproduced"
+      },
+      "could_not_run": null,
+      "note": null,
+      "evidence": [
+        {
+          "measurement_id": "m1",
+          "run_id": "r1",
+          "scope": "full",
+          "seed": 0,
+          "value": 96.78,
+          "source": {
+            "path": "runs/r1/stdout.txt",
+            "sha256": "sha256:9f3c10f4e25cce84843d9570e124dd22c224687413c52396d4535bacfbfb25ae"
+          },
+          "occurrences": [
+            {
+              "line": 1,
+              "raw": "knn_mnist: 96.78",
+              "value": 96.78
+            }
+          ],
+          "counts": true
+        }
+      ],
+      "verdict_history": [
+        {
+          "verdict": "reproduced",
+          "seq": 11,
+          "measurement_ids": [
+            "m1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "statement": "4-NN baseline accuracy on Kuzushiji-MNIST (percent)",
+      "metric": "knn_kmnist",
+      "where": {
+        "kind": "table",
+        "label": "Table 1, 4-Nearest Neighbour row, Kuzushiji-MNIST column",
+        "source_file": "main.tex",
+        "source_line": 198
+      },
+      "paper": {
+        "text": "91.56%",
+        "value": 91.56,
+        "unit": "%"
+      },
+      "paper_check": {
+        "matches": [
+          {
+            "file": "main.tex",
+            "line": 198,
+            "text": "4-Nearest Neighbour Baseline & 97.14\\% & 91.56\\% & 86.01\\% \\\\"
+          }
+        ],
+        "status": "found"
+      },
+      "success_bar": {
+        "close": {
+          "abs": 2.0
+        },
+        "comparator": "approx",
+        "is_default": false,
+        "reproduced": {
+          "abs": 1.0
+        }
+      },
+      "recorded_before_code": true,
+      "verdict": "reproduced",
+      "verdict_label": "reproduced",
+      "ours": {
+        "count": 1,
+        "std": null,
+        "value": 91.49,
+        "values": [
+          91.49
+        ]
+      },
+      "unit_scale": 1.0,
+      "judgement": {
+        "close_allowance": 2.0,
+        "difference": -0.07000000000000739,
+        "measured_value": 91.49,
+        "paper_value": 91.56,
+        "relative_difference": -0.0007645259938838727,
+        "reproduced_allowance": 1.0,
+        "verdict": "reproduced"
+      },
+      "could_not_run": null,
+      "note": null,
+      "evidence": [
+        {
+          "measurement_id": "m2",
+          "run_id": "r1",
+          "scope": "full",
+          "seed": 0,
+          "value": 91.49,
+          "source": {
+            "path": "runs/r1/stdout.txt",
+            "sha256": "sha256:9f3c10f4e25cce84843d9570e124dd22c224687413c52396d4535bacfbfb25ae"
+          },
+          "occurrences": [
+            {
+              "line": 2,
+              "raw": "knn_kmnist: 91.49",
+              "value": 91.49
+            }
+          ],
+          "counts": true
+        }
+      ],
+      "verdict_history": [
+        {
+          "verdict": "reproduced",
+          "seq": 13,
+          "measurement_ids": [
+            "m2"
+          ]
+        }
+      ]
+    }
+  ],
+  "guesses": [
+    {
+      "choice": "Euclidean (L2) distance on raw pixels",
+      "claims": [
+        "c1",
+        "c2"
+      ],
+      "id": "g1",
+      "missing": "Distance metric for the 4-NN classifier",
+      "source": null,
+      "why": "the paper names a 4-Nearest-Neighbour baseline but not the metric; Euclidean on raw pixels is the standard kNN baseline"
+    },
+    {
+      "choice": "sklearn balanced_accuracy_score (mean of per-class recall)",
+      "claims": [
+        "c1",
+        "c2"
+      ],
+      "id": "g2",
+      "missing": "How 'mean of per-class accuracies' is computed",
+      "source": null,
+      "why": "the paper reports the mean of per-class accuracies; balanced_accuracy_score is its direct implementation"
+    }
+  ],
+  "method_map": [
+    {
+      "code_commit": "1d5a00a3f0d2f78e8192e1e3bcc3d26c14ee9524",
+      "code_file": "code/knn_baseline.py",
+      "code_line": 45,
+      "code_sha256": "sha256:e35a9bc3cab07e3f7a46bf5d74cc710263317064a597edfabafd057eef742cf1",
+      "end_line": 47,
+      "id": "mm1",
+      "note": "KNeighborsClassifier(n_neighbors=4) + balanced accuracy (mean per-class)",
+      "paper_element": "Table 1: 4-Nearest Neighbour baseline row",
+      "paper_ref": {
+        "id": "tab:1",
+        "start": {
+          "file": "main.tex",
+          "line": 191
+        }
+      },
+      "snippet": "model = KNeighborsClassifier(n_neighbors=4, n_jobs=-1)",
+      "stale": false
+    }
+  ],
+  "notes": [],
+  "runs": [
+    {
+      "id": "r1",
+      "command": "python knn_baseline.py",
+      "env": "main",
+      "scope": "full",
+      "seed": 0,
+      "compute": "local",
+      "isolation": "none",
+      "code_state": {
+        "commit": "7587b59fbdc1accf80b40f72e94d57f3c87b36fa",
+        "dirty": false,
+        "vcs": "git"
+      },
+      "status": "succeeded",
+      "exit_code": 0,
+      "duration_s": 366.575,
+      "max_rss_bytes": 2758656000,
+      "stdout": {
+        "bytes": 35,
+        "path": "runs/r1/stdout.txt",
+        "sha256": "sha256:9f3c10f4e25cce84843d9570e124dd22c224687413c52396d4535bacfbfb25ae"
+      },
+      "stderr": {
+        "bytes": 0,
+        "path": "runs/r1/stderr.txt",
+        "sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "hardware": {
+        "cpu_count": 4,
+        "gpus": [],
+        "machine": "x86_64",
+        "platform": "macOS-13.7.8-x86_64-i386-64bit"
+      },
+      "cost_usd": null
+    }
+  ],
+  "provenance": {
+    "paper": {
+      "arxiv_id": "1812.01718",
+      "version": "v1",
+      "title": "Deep Learning for Classical Japanese Literature",
+      "authors": [
+        "Tarin Clanuwat",
+        "Mikel Bober-Irizar",
+        "Asanobu Kitamoto",
+        "Alex Lamb",
+        "Kazuaki Yamamoto",
+        "David Ha"
+      ],
+      "links": {
+        "abs": "https://arxiv.org/abs/1812.01718v1",
+        "pdf": "https://arxiv.org/pdf/1812.01718v1",
+        "source": "https://arxiv.org/e-print/1812.01718v1"
+      },
+      "source_format": "latex",
+      "files": [
+        {
+          "bytes": 9728,
+          "path": "paper/index.json",
+          "sha256": "sha256:b39b5237c247230e82dc8c46cab7a23c50066bffef2881f2cc9fa18a65a49c80"
+        },
+        {
+          "bytes": 4726510,
+          "path": "paper/paper.pdf",
+          "sha256": "sha256:503829211500c8d1d5d502b0ee764607d7408636cbe12be40a9dc7549b11a843"
+        },
+        {
+          "bytes": 4190111,
+          "path": "paper/source-download.tar.gz",
+          "sha256": "sha256:62b652bedcc0496808c9919284b1e7b30af7193c2bb01d87252c4939d9661235"
+        },
+        {
+          "bytes": 32536,
+          "path": "paper/text.json",
+          "sha256": "sha256:e9076fb75baa99ef24e7651b95cecacbec123a04dc05a6767309e017c809d733"
+        },
+        {
+          "file_count": 17,
+          "path": "paper/source",
+          "sha256": "sha256:fd8795d69e4edf66167249687a59cb69b48190244f9523e73b27d1337afdfd09",
+          "tree": true
+        }
+      ]
+    },
+    "code": {
+      "runs": [
+        {
+          "commit": "7587b59fbdc1accf80b40f72e94d57f3c87b36fa",
+          "tree_sha256": null,
+          "dirty": false,
+          "runs": [
+            "r1"
+          ],
+          "counting_runs": [
+            "r1"
+          ]
+        }
+      ],
+      "at_report": {
+        "vcs": "git",
+        "commit": "7587b59fbdc1accf80b40f72e94d57f3c87b36fa",
+        "dirty": false
+      }
+    },
+    "environments": [
+      {
+        "backend": "uv",
+        "gpu": false,
+        "isolation": "none",
+        "lock_file": "envs/main/lock.txt",
+        "lock_sha256": "sha256:8a96210d54d05d981dae164bf272d8d09033236b7ca861d60fc69152d2b959b7",
+        "locked_packages": 6,
+        "name": "main",
+        "packages": [],
+        "python": "3.12.12",
+        "requested_python": "3.12",
+        "requirements": "code/requirements.txt",
+        "requirements_sha256": "sha256:3b357251fd47d8428a758be0bf0bb40a11251a74c0c53cd0e95b3476884fead5",
+        "requirements_snapshot": "envs/main/requirements.txt",
+        "tool": {
+          "uv": "uv 0.13.4 (7456b60bc 2026-10-20 x86_64-apple-darwin)"
+        },
+        "venv": "envs/main/venv"
+      }
+    ],
+    "seeds": [
+      0
+    ],
+    "commands_logged": 1,
+    "commands_with_exit_code": 1,
+    "budget_usd": 0.0,
+    "spent_usd": 0.0,
+    "budget_events": [],
+    "evidence": {
+      "records": 14,
+      "head": "sha256:57a01f353f43779a646069aca1fedeff42983d5c8bd7edce1b61f113367ead21",
+      "verified": true,
+      "problems": []
+    },
+    "verify_command": "irp verify --study /private/tmp/irpsc/kmnist"
+  },
+  "gate": {
+    "complete": true,
+    "blocking": [],
+    "warnings": []
+  }
+}

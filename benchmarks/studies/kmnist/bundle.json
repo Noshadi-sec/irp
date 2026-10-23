@@ -1,0 +1,9 @@
+{
+  "created_at": "2026-10-23T14:09:54.368Z",
+  "created_by": "irp-agents 0.5.0",
+  "source_study": "/private/tmp/irpsc/kmnist",
+  "excluded": [
+    "paper/ (never redistributed; fetch it from the links in report.json)",
+    "envs/*/venv"
+  ]
+}

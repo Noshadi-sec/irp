@@ -1,0 +1,290 @@
+{
+  "schema": 1,
+  "title": "Cold Case: The Lost MNIST Digits (arXiv 1905.10498v2)",
+  "final": true,
+  "generated_at": "2026-10-23T11:19:39.949Z",
+  "tool_version": "0.5.0",
+  "summary": {
+    "claims": 1,
+    "verdicts": {
+      "reproduced": 1,
+      "close": 0,
+      "not_reproduced": 0,
+      "could_not_run": 0
+    },
+    "without_verdict": []
+  },
+  "claims": [
+    {
+      "id": "c1",
+      "statement": "Best KNN (k=3) misclassification rate, trained and tested on MNIST",
+      "metric": "knn_err",
+      "where": {
+        "kind": "table",
+        "label": "Table tbl:KNN3, 'Train on MNIST' row, MNIST column",
+        "source_file": "qmnist.tex",
+        "source_line": 720
+      },
+      "paper": {
+        "text": "2.95%",
+        "value": 2.95,
+        "unit": "%"
+      },
+      "paper_check": {
+        "matches": [
+          {
+            "file": "qmnist.tex",
+            "line": 720,
+            "text": "Train on MNIST & $2.95\\%$ ($\\pm 0.34\\%$) & $2.94\\%$ ($\\pm 0.34\\%$) & $3.19\\%$ ($\\pm 0.16\\%$)\\\\"
+          },
+          {
+            "file": "qmnist.tex",
+            "line": 721,
+            "text": "Train on QMNIST & $2.94\\%$ ($\\pm 0.34\\%$) & $2.95\\%$ ($\\pm 0.34\\%$) & $3.19\\%$ ($\\pm 0.16\\%$) \\\\"
+          }
+        ],
+        "status": "found"
+      },
+      "success_bar": {
+        "close": {
+          "abs": 1.0
+        },
+        "comparator": "approx",
+        "is_default": false,
+        "reproduced": {
+          "abs": 0.5
+        }
+      },
+      "recorded_before_code": true,
+      "verdict": "reproduced",
+      "verdict_label": "reproduced",
+      "ours": {
+        "count": 1,
+        "std": null,
+        "value": 2.95,
+        "values": [
+          2.95
+        ]
+      },
+      "unit_scale": 1.0,
+      "judgement": {
+        "close_allowance": 1.0,
+        "difference": 0.0,
+        "measured_value": 2.95,
+        "paper_value": 2.95,
+        "relative_difference": 0.0,
+        "reproduced_allowance": 0.5,
+        "verdict": "reproduced"
+      },
+      "could_not_run": null,
+      "note": null,
+      "evidence": [
+        {
+          "measurement_id": "m1",
+          "run_id": "r1",
+          "scope": "full",
+          "seed": 0,
+          "value": 2.95,
+          "source": {
+            "path": "runs/r1/stdout.txt",
+            "sha256": "sha256:35d39cf8e8144c490fe7da5b237b0a316278160ccf779fc635319c1584ac9a93"
+          },
+          "occurrences": [
+            {
+              "line": 1,
+              "raw": "knn_err: 2.95",
+              "value": 2.95
+            }
+          ],
+          "counts": true
+        }
+      ],
+      "verdict_history": [
+        {
+          "verdict": "reproduced",
+          "seq": 8,
+          "measurement_ids": [
+            "m1"
+          ]
+        }
+      ]
+    }
+  ],
+  "guesses": [
+    {
+      "choice": "Euclidean (L2) on raw 0-255 pixels",
+      "claims": [
+        "c1"
+      ],
+      "id": "g1",
+      "missing": "Distance metric / pixel preprocessing for KNN",
+      "source": null,
+      "why": "the paper reports best KNN at k=3 but not the metric; Euclidean on raw pixels is the standard MNIST KNN baseline"
+    }
+  ],
+  "method_map": [
+    {
+      "code_commit": "b6118b66d4d335b4981321d344cf7d708017e6f0",
+      "code_file": "code/knn_mnist.py",
+      "code_line": 16,
+      "code_sha256": "sha256:e52d92859b90a2973a705178713f8fea6deb60742ee946c93dba9844b3796694",
+      "end_line": null,
+      "id": "mm1",
+      "note": "KNeighborsClassifier(n_neighbors=3), Euclidean on raw pixels",
+      "paper_element": "Table tbl:KNN3: best KNN (k=3), Train on MNIST / Test on MNIST",
+      "paper_ref": {
+        "id": "tab:3",
+        "start": {
+          "file": "qmnist.tex",
+          "line": 708
+        }
+      },
+      "snippet": "from sklearn.neighbors import KNeighborsClassifier",
+      "stale": false
+    }
+  ],
+  "notes": [],
+  "runs": [
+    {
+      "id": "r1",
+      "command": "python knn_mnist.py",
+      "env": "main",
+      "scope": "full",
+      "seed": 0,
+      "compute": "local",
+      "isolation": "none",
+      "code_state": {
+        "commit": "b6118b66d4d335b4981321d344cf7d708017e6f0",
+        "dirty": false,
+        "vcs": "git"
+      },
+      "status": "succeeded",
+      "exit_code": 0,
+      "duration_s": 126.576,
+      "max_rss_bytes": 2699706368,
+      "stdout": {
+        "bytes": 14,
+        "path": "runs/r1/stdout.txt",
+        "sha256": "sha256:35d39cf8e8144c490fe7da5b237b0a316278160ccf779fc635319c1584ac9a93"
+      },
+      "stderr": {
+        "bytes": 0,
+        "path": "runs/r1/stderr.txt",
+        "sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "hardware": {
+        "cpu_count": 4,
+        "gpus": [],
+        "machine": "x86_64",
+        "platform": "macOS-13.7.8-x86_64-i386-64bit-Mach-O"
+      },
+      "cost_usd": null
+    }
+  ],
+  "provenance": {
+    "paper": {
+      "arxiv_id": "1905.10498",
+      "version": "v2",
+      "title": "Cold Case: The Lost MNIST Digits",
+      "authors": [
+        "Chhavi Yadav",
+        "Léon Bottou"
+      ],
+      "links": {
+        "abs": "https://arxiv.org/abs/1905.10498v2",
+        "pdf": "https://arxiv.org/pdf/1905.10498v2",
+        "source": "https://arxiv.org/e-print/1905.10498v2"
+      },
+      "source_format": "latex",
+      "files": [
+        {
+          "bytes": 12791,
+          "path": "paper/index.json",
+          "sha256": "sha256:32af4e0b290b34553bd3d21e99ac8e12e1e1ee58c932cce339161e13ac740820"
+        },
+        {
+          "bytes": 511438,
+          "path": "paper/paper.pdf",
+          "sha256": "sha256:1d003a9b3eb577b61c9a8709eb501952b92f0537077eb7abd2bc57097a02f397"
+        },
+        {
+          "bytes": 176542,
+          "path": "paper/source-download.tar.gz",
+          "sha256": "sha256:43f187958410a2b55acc7e45bc406190bb51e27084f1df658d7a8c468c94d6bc"
+        },
+        {
+          "bytes": 61082,
+          "path": "paper/text.json",
+          "sha256": "sha256:4d5e7c078841898e77684d88500cb0a040965bb8113afe4fe2975e427029bde6"
+        },
+        {
+          "file_count": 20,
+          "path": "paper/source",
+          "sha256": "sha256:4cdb71984b33468330ad7232d5ba8957c382f6af507d3d18f87d7900a2785c44",
+          "tree": true
+        }
+      ]
+    },
+    "code": {
+      "runs": [
+        {
+          "commit": "b6118b66d4d335b4981321d344cf7d708017e6f0",
+          "tree_sha256": null,
+          "dirty": false,
+          "runs": [
+            "r1"
+          ],
+          "counting_runs": [
+            "r1"
+          ]
+        }
+      ],
+      "at_report": {
+        "vcs": "git",
+        "commit": "b6118b66d4d335b4981321d344cf7d708017e6f0",
+        "dirty": false
+      }
+    },
+    "environments": [
+      {
+        "backend": "uv",
+        "gpu": false,
+        "isolation": "none",
+        "lock_file": "envs/main/lock.txt",
+        "lock_sha256": "sha256:8a96210d54d05d981dae164bf272d8d09033236b7ca861d60fc69152d2b959b7",
+        "locked_packages": 6,
+        "name": "main",
+        "packages": [],
+        "python": "3.12.12",
+        "requested_python": "3.12",
+        "requirements": "code/requirements.txt",
+        "requirements_sha256": "sha256:3b357251fd47d8428a758be0bf0bb40a11251a74c0c53cd0e95b3476884fead5",
+        "requirements_snapshot": "envs/main/requirements.txt",
+        "tool": {
+          "uv": "uv 0.13.4 (7456b60bc 2026-10-20 x86_64-apple-darwin)"
+        },
+        "venv": "envs/main/venv"
+      }
+    ],
+    "seeds": [
+      0
+    ],
+    "commands_logged": 1,
+    "commands_with_exit_code": 1,
+    "budget_usd": 0.0,
+    "spent_usd": 0.0,
+    "budget_events": [],
+    "evidence": {
+      "records": 10,
+      "head": "sha256:ad2cfb6b6ab15835f77c7bf46d45d3c33cd849b50983a6b3fef105b1992ed2a1",
+      "verified": true,
+      "problems": []
+    },
+    "verify_command": "irp verify --study /private/tmp/irpbench/qmnist"
+  },
+  "gate": {
+    "complete": true,
+    "blocking": [],
+    "warnings": []
+  }
+}

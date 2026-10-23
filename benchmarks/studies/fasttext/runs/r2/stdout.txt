@@ -1,0 +1,2 @@
+sizes: train 120000 test 7600
+ag_acc: 92.86

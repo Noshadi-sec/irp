@@ -1,0 +1,80 @@
+# Reproduction report: Fashion-MNIST: a Novel Image Dataset for Benchmarking Machine Learning Algorithms (arXiv 1708.07747v2)
+
+Result: 1 reproduced, 1 close, 1 not reproduced by this run (of 3 claims)
+
+| Claim | Where | Paper | Ours | Verdict |
+| --- | --- | --- | --- | --- |
+| c1 GaussianNB test accuracy (Fashion-MNIST) | Benchmark table, GaussianNB row | 0.511 | 0.5856 (3 seeds, std 0) | not reproduced by this run |
+| c2 DecisionTree (entropy, max_depth=10, best) accuracy (Fashion-MNIST) | Benchmark table, DecisionTreeClassifier row | 0.798 | 0.8112 (3 seeds, std 0.00046) | close |
+| c3 RandomForest (100 trees, gini, max_depth=100) accuracy (Fashion-MNIST) | Benchmark table, RandomForestClassifier row | 0.872 | 0.8757 (3 seeds, std 0.002) | reproduced |
+
+## Evidence per claim
+
+### c1 GaussianNB test accuracy (Fashion-MNIST)
+
+- Paper: 0.511 (Benchmark table, GaussianNB row; printed at `benchmark_table.tex:56`).
+- Success bar: reproduced within 0.01 absolute; close within 0.03 absolute.
+- m1 = 0.5856 from run r1 (full, seed 0), `runs/r1/stdout.txt:2` "gnb_acc: 0.5856"
+- m2 = 0.5856 from run r2 (full, seed 1), `runs/r2/stdout.txt:2` "gnb_acc: 0.5856"
+- m3 = 0.5856 from run r3 (full, seed 2), `runs/r3/stdout.txt:2` "gnb_acc: 0.5856"
+- Difference: 0.0746 (14.60% relative).
+
+### c2 DecisionTree (entropy, max_depth=10, best) accuracy (Fashion-MNIST)
+
+- Paper: 0.798 (Benchmark table, DecisionTreeClassifier row; printed at `benchmark_table.tex:30`).
+- Success bar: reproduced within 0.01 absolute; close within 0.02 absolute.
+- m4 = 0.8115 from run r1 (full, seed 0), `runs/r1/stdout.txt:3` "dtree_acc: 0.8115"
+- m5 = 0.8107 from run r2 (full, seed 1), `runs/r2/stdout.txt:3` "dtree_acc: 0.8107"
+- m6 = 0.8115 from run r3 (full, seed 2), `runs/r3/stdout.txt:3` "dtree_acc: 0.8115"
+- Difference: 0.01323 (1.66% relative).
+
+### c3 RandomForest (100 trees, gini, max_depth=100) accuracy (Fashion-MNIST)
+
+- Paper: 0.872 (Benchmark table, RandomForestClassifier row; printed at `benchmark_table.tex:122`).
+- Success bar: reproduced within 0.01 absolute; close within 0.02 absolute.
+- m7 = 0.8774 from run r1 (full, seed 0), `runs/r1/stdout.txt:4` "rf_acc: 0.8774"
+- m8 = 0.8761 from run r2 (full, seed 1), `runs/r2/stdout.txt:4` "rf_acc: 0.8761"
+- m9 = 0.8735 from run r3 (full, seed 2), `runs/r3/stdout.txt:4` "rf_acc: 0.8735"
+- Difference: 0.003667 (0.42% relative).
+
+## Guesses
+
+- g1 scikit-learn version used for the benchmark. Choice: scikit-learn 1.5.2. Why: the paper does not state the version; GaussianNB's variance smoothing changed across sklearn versions, which shifts its accuracy. Affects c1.
+- g2 pixel preprocessing (raw 0-255 vs scaled 0-1). Choice: raw uint8 0-255. Why: unstated; monotonic scaling does not change the tree models, but it shifts GaussianNB's variance floor and accuracy. Affects c1.
+- g3 number of repeats. Choice: 3 seeds (0,1,2). Why: paper averaged 5 shuffles; used 3 for time. GaussianNB is deterministic; tree-model variance across seeds is small. Affects c1, c2, c3.
+
+## Method map
+
+- Benchmark table: GaussianNB row -> code/fashion_bench.py:74
+- Benchmark table: DecisionTreeClassifier row -> code/fashion_bench.py:75-77
+- Benchmark table: RandomForestClassifier row -> code/fashion_bench.py:78-80
+
+## Notes and limitations
+
+- n1 [limitation] (c1): GaussianNB came out higher than the paper (0.586 vs 0.511). On pixel data it is dominated by near-zero-variance background pixels, so it is very sensitive to scikit-learn's var_smoothing and to pixel scaling, neither pinned down by the paper. The tree models, insensitive to both, reproduce (RandomForest) or come close (DecisionTree).
+
+## Runs
+
+| Run | Command | Scope | Seed | Exit | Time | Isolation |
+| --- | --- | --- | --- | --- | --- | --- |
+| r1 | `python fashion_bench.py` | full | 0 | 0 | 357.9s | none |
+| r2 | `python fashion_bench.py` | full | 1 | 0 | 106.2s | none |
+| r3 | `python fashion_bench.py` | full | 2 | 0 | 90.3s | none |
+
+## Provenance
+
+- Paper: arXiv 1708.07747v2
+  - `paper/index.json` sha256:f47255018aefd0f5bf03b3faa75486002a3ab63114e554c7e0b239bd3f3f5492
+  - `paper/paper.pdf` sha256:253b6ef70144cb56d13b4e67d3f8cafad42df78d5984265e0a6e4812ad1715ae
+  - `paper/source-download.tar.gz` sha256:692c7457c7166882b9b063ec74562d1e758dfc65f38a21ad8c58a120dc0b29e0
+  - `paper/text.json` sha256:fde834f08611de44b26a3f1dcb724b14669c307d22ba5bb3f3752620f568387e
+  - `paper/source` sha256:02c50c5589b7ead2d8f963e0c25998a3e3e64abb9aea5e71788caf3098b253f3
+- Code: git commit 85255d22718e17f124783e8a190c27638cd3075d (clean) for runs r1, r2, r3
+- Environment main: uv, Python 3.12.12, lock `envs/main/lock.txt` sha256:8a96210d54d05d981dae164bf272d8d09033236b7ca861d60fc69152d2b959b7
+- GPU: none recorded
+- Seeds (full runs): 0, 1, 2
+- Commands logged: 3, 3 with an exit code
+- Evidence log: 31 records, head sha256:cf8547aa4eca958e8e392d1a7876ef954eb85cd43133b6026e8d31dcd15a9a81, verified
+- Verify: `irp verify --study /private/tmp/irpsc/fashion-mnist`
+
+Generated by IRP 0.5.0 from the evidence log at 2026-10-23T14:14:13.556Z.

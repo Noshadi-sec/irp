@@ -39,6 +39,13 @@ listed and excluded.
 
 ## Golden papers
 
-`golden/papers.json` lists the three small papers for the v0.1 gate. It starts
-empty: choose papers that have official code and run on a CPU in under 30
-minutes, and record why each was chosen.
+`golden/papers.json` lists five light papers (official code exists, each runs on a
+CPU in minutes, a numeric table claim, a permissive license) and why each was
+chosen: Fashion-MNIST, KMNIST, MNIST-1D, fastText and QMNIST. Their verified bundles
+are in `studies/`. Summarize them with:
+
+    uv run python benchmarks/summarize.py benchmarks/studies
+
+Current result: 8 claims across the five — 6 reproduced, 1 close, 1 not reproduced
+(87.5% reproduced or close). The `official.json` files (the official code's own
+numbers) are not added yet, so agreement-with-official is not reported.

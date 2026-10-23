@@ -206,10 +206,24 @@ the paper:
 IRP supports computational papers: machine learning, algorithms and
 simulations. It does not support wet-lab work or anything weapons-related.
 
-## Showcases
+## Benchmark
 
-Example reproductions — a paper built end to end with the evidence to
-check it — will be published here.
+Five light papers — official code exists, each runs on a CPU in minutes — rebuilt
+from the paper alone and checked claim by claim. Every number comes from a verified
+evidence log; re-check any study with `irp verify --study benchmarks/studies/<name>`.
+
+| Paper | Claims | Result |
+| --- | --- | --- |
+| [Fashion-MNIST](benchmarks/studies/fashion-mnist/report.md) (1708.07747) | 3 | 1 reproduced, 1 close, 1 not reproduced |
+| [KMNIST](benchmarks/studies/kmnist/report.md) (1812.01718) | 2 | both reproduced |
+| [MNIST-1D](benchmarks/studies/mnist-1d/report.md) (2011.14439) | 1 | reproduced |
+| [fastText](benchmarks/studies/fasttext/report.md) (1607.01759) | 1 | reproduced (92.86% vs 92.5%) |
+| [QMNIST](benchmarks/studies/qmnist/report.md) (1905.10498) | 1 | reproduced (2.95% vs 2.95%) |
+
+Across 8 claims: **6 reproduced, 1 close, 1 not reproduced (87.5% reproduced or
+close)**, ~160s and $0 of paid compute per paper. Selection criteria and the full
+set are in [benchmarks/golden/papers.json](benchmarks/golden/papers.json); the
+protocol and `summarize.py` are in [benchmarks/](benchmarks/).
 
 If you build a paper with IRP, share the report in an
 [issue](https://github.com/Noshadi-sec/irp/issues) with the paper, your

@@ -26,17 +26,21 @@ themselves (bundles, without papers) are published so anyone can run `verify`.
 
 ## Golden papers
 
-The v0.1 gate needs three small papers with official code that run on a CPU in
-under 30 minutes. Choose them by:
+The golden set in [`benchmarks/golden/papers.json`](../benchmarks/golden/papers.json)
+holds five light papers — official code exists, each runs on a CPU in minutes, at
+least one numeric claim in a table, and a license that allows running the code:
+Fashion-MNIST, KMNIST, MNIST-1D, fastText and QMNIST. Each was built from the paper
+with the official code hidden (see [benchmarks/README.md](../benchmarks/README.md)),
+and the verified bundles live in [`benchmarks/studies/`](../benchmarks/studies/).
 
-- official code exists, so the hidden reference can be compared afterward;
-- a CPU run under 30 minutes on a laptop;
-- at least one numeric claim in a table;
-- a license that allows running the code.
+Result across the five (8 claims, every number from a verified evidence log):
+**6 reproduced, 1 close, 1 not reproduced — 87.5% reproduced or close**, ~160s and
+$0 of paid compute per paper. Reproduce the summary with:
 
-Record the selection in `benchmarks/golden/papers.json`, then build each paper
-with the official code hidden, as described in
-[benchmarks/README.md](../benchmarks/README.md).
+    uv run python benchmarks/summarize.py benchmarks/studies
+
+`agreement_with_official_code` is reported once each study's `official.json` (the
+official code's own numbers) is added.
 
 ## Choosing showcase papers
 
