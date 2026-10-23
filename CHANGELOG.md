@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.0](https://github.com/Noshadi-sec/irp/compare/irp-agents-0.6.0...irp-agents-0.7.0) (2026-10-23)
+
+
+### Tests
+
+* add the golden benchmark — five papers with verified study bundles ([a64cab3](https://github.com/Noshadi-sec/irp/commit/a64cab3d02aac5c6d0759d6dc72be41069dd3e83))
+
 ## [0.6.0](https://github.com/Noshadi-sec/irp/compare/irp-agents-0.5.0...irp-agents-0.6.0) (2026-10-21)
 
 
