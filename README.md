@@ -1,5 +1,6 @@
 <!-- mcp-name: io.github.Noshadi-sec/irp -->
 <div align="center">
+[![IRP MCP server](https://mcprush.com/badge/irp-mcp/card.svg)](https://mcprush.com/to/irp-mcp?ref=badge)
 
 **English** · [简体中文](docs/readme/README_zh.md) · [日本語](docs/readme/README_ja.md) · [한국어](docs/readme/README_ko.md) · [Español](docs/readme/README_es.md) · [Italiano](docs/readme/README_it.md)
 
